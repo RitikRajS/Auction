@@ -1,0 +1,32 @@
+/* Alert Messages */
+
+.messages{
+    list-style: none;
+    margin: 10px 5px;
+    width:90%;
+    margin-right: auto;
+    margin-left: auto;
+    padding:0px;
+    border-radius: 5px;
+    height:auto;
+}
+
+.messages .alert-success, .messages .alert-warning{
+    display: flex;
+    height:auto;
+    font-size:20px;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.messages .alert-success{
+    background-color: rgb(99, 156, 13);
+}
+
+
+.messages .alert-warning{
+    background-color:rgb(165, 13, 13)
+}

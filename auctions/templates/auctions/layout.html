@@ -1,0 +1,70 @@
+    {% load static %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>{% block title %} Auctions {% endblock %}</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+            <link href="{% static 'auctions/messages.css' %}" rel="stylesheet">
+            <link href="{% static 'auctions/index.css' %}" rel="stylesheet">
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        </head>
+        <body>
+            <div id="header">
+
+                <div id= "top-nav">
+
+                    <h1 id= "title"><a href={% url 'index' %} class="title-link"> CS50 Auctions</a></h1>
+                    <ul class="nav">
+
+                        {% if user.is_authenticated %}
+                            <li class="nav-item ms-auto dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Welcome, {{ user.username }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="authDropdown">
+                                    <a class="dropdown-item" href="{% url 'create' %}">Create Auction</a>
+                                    <a class="dropdown-item" href="{% url 'watchlist' %}">Watchlist ({{ count|default:"0" }})</a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="nav-item ms-auto dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Login & Register
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="authDropdown">
+                                    <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
+                                    <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                                </div>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div id="bottom-nav">
+
+                    <ul class="nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'closed_auction' %}">Closed Auctions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'categories' %}">Categories</a>
+                        </li>
+                    
+                    </ul>
+
+                </div>
+
+            </div>
+            {% block body %}
+            {% endblock %}
+        </body>
+    </html>

@@ -1,0 +1,41 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {% if items %}
+        <h2>Active Listings within {{ title }}</h2>
+
+        <div class="auction-grid">
+            {% for item in items %}
+
+                {% if item.active == True %}
+
+                    <div class="auction-container">
+                        <a href= {% url 'auction' item=item.id %}>
+                            <div class="auction-image">
+                                <img src={{ item.image_url }} alt= "Auction Image">
+                            </div>
+                            <div class="auction-title">
+                                {{ item.title }}
+                            </div>
+                            <div class="gradient"></div>
+                            <div class="auction-description">
+                                {{ item.description }}
+                            </div>
+                            <div class="auction-price">
+                                £{{ item.current_price }}
+                            </div>
+                        </a>
+                    </div>
+                
+                {% endif %}
+
+            {% endfor %}
+        </div>
+
+
+    {% else %}
+        <h2> No Items within {{ title }} </h2>
+    {% endif %}
+
+{% endblock %}

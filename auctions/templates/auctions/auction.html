@@ -1,0 +1,157 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    
+    <!--Message Block-->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class = "alert-{{ message.tags}}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Winner -->
+    {% if request.method == "GET" %}
+        {% if winner %}
+            <div class="messages">
+                {% if winner.bidder == request.user %}
+                    <p class="alert-success">Congratulations, you've won the auction</p>
+                {% else%}
+                    <p class="alert-warning"> The auction was won by {{ winner.bidder }} </p>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <div class= "item-grid">
+
+        <!-- Lisiting Details  -->
+
+        <div class="item-image">
+            <img src= {{ auction.image_url }} alt= "Item Image">
+        </div>
+
+        <div class="item-details">
+            <h2>{{ auction.title }}</h2>
+            <div class="gradient"></div>
+            <p>Current Price: £{{ current_price }} </p>
+            <!-- Bid Form -->
+            {% if auction.active == True and user.is_authenticated %}
+                {% if auction.seller == request.user %}
+                {% else %}
+                    <form method = "POST" action= {% url 'bid' item=auction.id %} class="bid-form">
+                        {% csrf_token %}
+                        <p> {{ bidform }}</p>
+                        <input type= "submit" value= "Submit Bid" id="bid-button">
+                    </form>
+
+                {% endif %}
+
+            {% endif %}
+
+            <!-- Watchlist Form -->
+            {% if auction.active == True and user.is_authenticated %}
+                <form method = "POST" action= {% url 'watchlist_update' item=auction.id %}>
+                    {% csrf_token %}
+                    {{ watchlist_form }}
+                    <div class="watchlist-button">
+                        {% if in_watchlist %}
+                            <input type="submit" id="watchlist-remove" value= "Remove from your Watchlist">
+                        {% else %}
+                            <input type="submit" id="watchlist-add" value= "Add to your Watchlist">
+                        {% endif %}
+                    </div>
+                </form>
+            {% endif %}
+
+        </div>
+
+        <div class="item-description">
+            <p id="box-heading">Description</p>
+            <div class="gradient"></div>
+            <p>{{ auction.description }}</p>
+        </div>
+            
+        <div class="extra-info">
+            <p id="box-heading">Additional Information</p>
+            <div class="gradient"></div>
+            <p>Starting Price: £{{ auction.price }} </p>
+            <p>Sold by: {{ auction.seller }} </p>
+            <p>Added on: {{ auction.date }} </p>
+            <p><a href = {% url 'category' category=auction.category %}> Category:{{ auction.category.category_name}} </a></p>
+        </div>
+
+        <!-- Biding History -->
+
+        <div class="bid-history">
+            <p id="box-heading"> Previous Bid History </p>
+            <div class="gradient"></div>        
+            {% if bids %}
+                {% for bid in bids %}
+                    <ol> £{{ bid.bid_amount }}  was placed by {{ bid.bidder }}</ol>
+                {% endfor %}
+            {% else %}
+                <p> No Bids yet </p>
+            {% endif %}
+
+        </div>
+
+        <!-- Active Listing -->
+
+        <div class="active-list">
+            {% if auction.active and request.user == auction.seller %}
+                <div class="close-auction">
+                    <div id="box-heading"> Close Auction</div>
+                    <div class="gradient"></div>
+                    <form method= "POST" action = {% url 'active' item=auction.id %}>
+                        {% csrf_token %}
+                        {{ active }}
+                        <input type="submit" value="Close Auction" id="auction-remove">
+                    </form>
+                </div>
+            {% else %}
+                <div class="close-auction-borderless">
+                </div>
+            {% endif %}
+        </div>
+
+
+        
+
+        <!-- Comments -->
+
+        <div class="comments">
+            <p id="box-heading"> Comments </p>
+            <div class="gradient"></div> 
+            <div class="previous-comments">
+                {% for item in item_comments %}
+                    <p> {{ item.commenter }} </p>
+                    <p> {{ item.comment }} </p>
+                    <p> {{ item.comment_date }} </p>
+                    <div class="gradient"></div> 
+                {% empty %}
+                    <p> No Comments posted for {{ auction.title }} </p>
+                {% endfor %}
+            </div>
+
+            <!-- Comment Form -->
+            <div class="add-comment">
+                {% if auction.active == True and user.is_authenticated %}
+                    {% if request.user == auction.seller %}
+                    {% else %}
+                        <form method = "POST" action= {% url 'comment' item=auction.title %}>
+                            {% csrf_token %}
+                            {{ comment }}
+                            <input type ="submit" id="comment-button" value= "Post Comment">
+                        </form>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

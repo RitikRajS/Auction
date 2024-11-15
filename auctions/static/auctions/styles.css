@@ -1,0 +1,365 @@
+body {
+    padding: 10px;
+    
+}
+
+/* Header/Navigation Bar CSS */
+
+#header{
+    border: 1px solid yellow;
+    background-color: rgb(33, 41, 110);
+    border-radius: 15px;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width:100%;
+    margin-bottom: 15px;
+}
+
+#top-nav{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    flex-wrap: nowrap;
+    border-bottom: 1px solid white;
+    align-items: center;
+}
+
+#title{
+    margin:5px 10px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 35px;
+}
+
+.nav{
+    display: flex;
+    flex-grow:1;
+}
+
+.title-link, .nav-link{
+    text-decoration: none;
+    color: inherit;
+}
+
+.title-link:hover, 
+.nav-link:hover{
+    text-decoration: none;
+    color: rgb(150, 128, 4);
+}
+
+.ms-auto{
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+
+#bottom-nav{
+    display: block;
+    width:100%
+}
+
+h2{
+    display:flex;
+    margin: 5px 50px;
+    color:#434952;
+    justify-content: center;
+}
+
+
+
+
+/* Create Page CSS*/
+.auction-form {
+    border: 1px solid #b6b8bc;
+    border-radius: 5px;
+    width:110vh;
+    margin: 30px auto; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+
+}
+
+.form-row{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+hr{
+    border: 0.5px solid #dfe1e5;
+    width: 50%;
+    margin: 2px 245px;
+}
+.auction-form label{
+    display: inline-block;
+    min-width: 100px;
+    margin: 0px 100px 0px 50px
+}
+
+.title-field, .description-field,
+    .image-field, .price-field,
+    .category-field{
+    display: inline-block;
+    width: 50%;
+    margin-right: auto;
+    min-width: 30%;
+    border: 1px solid #dfe1e5;
+    background-color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+
+    
+}
+
+#button{
+    width: 120px;
+    margin-right:50px;
+    margin-top: 10px;
+    margin-left:auto;
+    cursor:pointer;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+#button:hover {
+    box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+    border-color: rgba(223,225,229,0);  
+}
+
+/* Category CSS*/
+
+.grid-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+    gap:45px;
+    justify-items: center;
+    padding:20px;
+}
+
+.category-container{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width:100%;
+    height:300px;
+    max-width: 300px;
+    border-radius: 20px;
+    background-color: rgb(33, 41, 110);
+    transition: transform 0.3s ease;
+    
+}
+
+.category-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height:270px;
+    overflow:hidden;
+    border-radius: 20px;
+    object-fit:cover;
+}
+
+.category-container a{
+    text-decoration: none;
+    color:white;
+    text-align: center;
+}
+
+.category-name{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.category-container a:hover, 
+.category-name:hover
+{
+    text-decoration-line: none !important;
+    color: rgb(150, 128, 4);
+}
+
+
+.category-container:hover
+{
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+
+/* CSS for the Closed Items Page  */
+
+
+.inactive-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap:20px;
+    justify-items: center;
+    padding:10px;
+}
+
+.inactive-container{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width:100%;
+    height:300px;
+    max-width: 250px;
+    border-radius: 20px;
+    background-color: rgb(33, 41, 110);
+    transition: transform 0.3s ease;
+}
+
+
+.inactive-image img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:250px;
+    height:220px;
+    overflow:hidden;
+    border-radius: 20px;
+}
+
+
+.inactive-container a{
+    text-decoration: none;
+    color:white;
+    text-align: center;
+}
+
+.inactive-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:30px;
+    text-align:center
+
+}
+
+.inactive-winner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:50px;
+    font-size: 20px;;
+
+}
+
+.inactive-container a:hover, 
+.inactive-title:hover
+{
+    text-decoration-line: none !important;
+    color: rgb(150, 128, 4);
+}
+
+
+.inactive-container:hover
+{
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+
+
+
+/* CSS for the Category Page & Index Listing Page & Watchlist */
+
+.auction-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap:10px;
+    justify-items: center;
+}
+
+.auction-container{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    height:450px;
+    max-width: 250px;
+    border-radius: 20px;
+    background-color: rgb(33, 41, 110);
+    transition: transform 0.3s ease;
+    margin: 15px;
+
+}
+
+
+.auction-image img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:250px;
+    height:220px;
+    overflow:hidden;
+    border-radius: 20px;
+}
+
+
+.auction-container a{
+    text-decoration: none;
+    color:white;
+    text-align: center;
+}
+
+.auction-title{
+    display: flex;
+    width: 95%;
+    align-items: center;
+    justify-content: center;
+    height:50px;
+    text-align:center;
+    margin:10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+.auction-description{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100px;
+    text-align:justify;
+    margin:10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size:14px
+}
+
+.auction-status, .auction-price{
+    height:40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 0px 20px 20px;
+
+}
+.auction-status.active, .auction-price{
+    background-color:rgb(194, 194, 8)
+}
+
+.auction-status.inactive{
+    background-color:rgb(97, 2, 2)
+}
+
+.auction-container a:hover, 
+.auction-title:hover
+{
+    text-decoration-line: none !important;
+    color: rgb(150, 128, 4);
+}
+
+
+.auction-container:hover
+{
+    transform: scale(1.1);
+    z-index: 10;
+}

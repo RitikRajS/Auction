@@ -1,0 +1,31 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    <div class="auction-grid">
+        {% for auction in auctions_prices %}
+
+            <div class="auction-container">
+                <a href= {% url 'auction' item=auction.auction.id %}>
+                    <div class="auction-image">
+                        <img src={{ auction.auction.image_url }} alt= "Auction Image">
+                    </div>
+                    <div class="auction-title">
+                        {{ auction.auction.title }}
+                    </div>
+                    <div class="gradient"></div>
+                    <div class="auction-description">
+                        {{ auction.auction.description }}
+                    </div>
+                    <div class="auction-price">
+                        £{{ auction.current_price }}
+                    </div>
+                </a>
+            </div>
+
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Recently Closed Listings</h2>
+
+    <div class="inactive-grid">
+    
+        {% for item in items %}
+
+            <div class="inactive-container">
+                <a href= {% url 'auction' item=item.id %}>
+                    <div class="inactive-image">
+                        <img src={{ item.image_url}} alt="Auction Image">
+                    </div>
+                    <div class="inactive-title">
+                        {{ item.title }} 
+                    </div>
+                    <div class="inactive-winner">
+                        {% if item.winning_bid %}
+                            Winner is {{ item.winning_bid.bidder.username }}
+                        {% else %}
+                            No winner 
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
