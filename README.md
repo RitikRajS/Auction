@@ -1,2 +1,9 @@
-# CS50W_Project_2
-Web Programming with Python and JavaScript Project 2 
+# Auction
+
+## Overview 
+
+Web application for an e-commerce auction similar to eBay
+
+## Lessons Learned
+* SQL Database Fundamentals
+* SQLite implementation with the Django Framework 
